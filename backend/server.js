@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
-
+const path=require('path');
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -77,6 +77,10 @@ app.post('/register', (req, res) => {
     });
 });
 
+app.use(express.static(path.join(__dirname,'form/dist')));
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'form','dist','index.html'));
+})
 
 // ✅ Start Server
 const PORT = process.env.PORT || 5001;
