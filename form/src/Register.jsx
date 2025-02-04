@@ -24,7 +24,14 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5001/register', formData);
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            
             toast.success(`Payment Successful! Transaction`, {
                 position: 'top-right',
                 autoClose: 2000,

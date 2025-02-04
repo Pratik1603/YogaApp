@@ -5,7 +5,15 @@ const cors = require('cors');
 const path=require('path');
 const app = express();
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+    origin: function (origin, callback) {
+        callback(null, true); // Allow all origins
+    },
+    credentials: true // Allows credentials to be sent
+}
+
+// Enable CORS for all requests or specify your frontend URL
+app.use(cors(corsOptions));
 const _dirname=path.resolve();
 // console.log(path.resolve());
 const db = mysql.createConnection({
