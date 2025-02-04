@@ -1,0 +1,21 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5001:5001"
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASS=Sahoo@2003
+      - DB_NAME=yoga
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Sahoo@2003
+      MYSQL_DATABASE: yoga
+    ports:
+      - "3306:3306"  # Change the host port to 3307
