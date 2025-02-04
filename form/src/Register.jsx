@@ -24,7 +24,7 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5001/register', {
+            const response = await fetch('https://yogaapp-x1ez.onrender.com/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
