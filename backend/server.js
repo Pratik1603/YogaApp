@@ -6,7 +6,8 @@ const path=require('path');
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+const _dirname=path.resolve();
+// console.log(path.resolve());
 const db = mysql.createConnection({
     host: process.env.DB_HOST,          // MySQL host from .env
     user: process.env.DB_USER,          // MySQL user from .env
@@ -77,9 +78,9 @@ app.post('/register', (req, res) => {
     });
 });
 
-app.use(express.static(path.join(__dirname,'form/dist')));
+app.use(express.static(path.join(_dirname,'form/dist')));
 app.get('*',(req,res)=>{
-    res.sendFile(path.join(__dirname,'form','dist','index.html'));
+    res.sendFile(path.join(_dirname,'form','dist','index.html'));
 })
 
 // ✅ Start Server
