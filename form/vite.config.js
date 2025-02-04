@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  server: {
+  backend: {
     proxy: {
       '/api': {
         target: 'http://localhost:5001',

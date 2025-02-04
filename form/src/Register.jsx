@@ -24,29 +24,54 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/register', {
+            const response = await fetch('http://localhost:5001/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             });
-            
+        
+            // Convert response to JSON
+            const data = await response.json();
+        
+            if (!response.ok) {
+                // Handle errors by showing toast and redirecting
+                toast.error(data.error || '❌ Error processing request', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                });
+        
+                // Redirect after 3 seconds
+                setTimeout(() => {
+                    navigate('/');
+                }, 3000);
+                return; // Stop execution
+            }
+        
+            // If status is 200, show success message
             toast.success(`Payment Successful! Transaction`, {
                 position: 'top-right',
                 autoClose: 2000,
             });
-
-            // Redirect to Home page after 2 seconds
+        
+            console.log(data);
+        
+            // Redirect to Home page after success
             setTimeout(() => {
                 navigate('/');
             }, 2000);
         } catch (error) {
-            toast.error(error.response?.data?.error || '❌ Error processing request', {
+            toast.error('❌ Network error, please try again!', {
                 position: 'top-right',
                 autoClose: 3000,
             });
+        
+            setTimeout(() => {
+                navigate('/');
+            }, 3000);
         }
+        
     };
 
     return (
