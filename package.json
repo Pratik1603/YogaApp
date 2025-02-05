@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"node backend/server.js && npm run dev",
+    "start":"node backend/server.js && npm install && npm run dev",
     "build": "npm install && npm install --prefix form && npm run build --prefix form"
   },
   "keywords": [],
